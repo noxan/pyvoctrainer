@@ -6,6 +6,10 @@ import random
 
 
 class VocTrainer(object):
+    def __init__(self):
+        self.words = []
+        self.score = 0
+
     def load_file(self, filename):
         self.words = []
         f = codecs.open(filename, 'r', encoding='utf-8')
@@ -18,6 +22,7 @@ class VocTrainer(object):
         print('What is the translation for "%s"?' % (original))
         answer = input()
         if answer.lower() in translations:
+            self.score += 1
             print("Correct!")
         else:
             print("Wrong! Correct answer(s) would have been: %s" % (", ".join(translations)))
