@@ -14,20 +14,20 @@ class VocTrainer(object):
             if len(parts) > 1:
                 self.words.append([trans.strip() for trans in parts])
 
+    def ask_word(self, original, translations):
+        print('What is the translation for "%s"?' % (original))
+        answer = input()
+        if answer.lower() in translations:
+            print("Correct!")
+        else:
+            print("Wrong!")
+            print(translations)
+
     def start_training(self):
         if len(self.words) > 0:
             word = random.choice(self.words)
+            self.ask_word(word[0], word[1:])
 
-            original = word[0]
-            translations = word[1:]
-
-            print('What is the translation for "%s"?' % (original))
-            answer = input()
-            if answer.lower() in translations:
-                print("Correct!")
-            else:
-                print("Wrong!")
-                print(translations)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
