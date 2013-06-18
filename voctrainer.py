@@ -22,7 +22,12 @@ class VocTrainer(object):
             translations = word[1:]
 
             print('What is the translation for "%s"?' % (original))
-            print(translations)
+            answer = input()
+            if answer.lower() in translations:
+                print("Correct!")
+            else:
+                print("Wrong!")
+                print(translations)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
