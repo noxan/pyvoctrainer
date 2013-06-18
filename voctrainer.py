@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import codecs
+import signal
 import sys
 import random
 
@@ -9,6 +10,7 @@ class VocTrainer(object):
     def __init__(self):
         self.words = []
         self.score = 0
+        self.running = False
 
     def load_file(self, filename):
         self.words = []
@@ -28,9 +30,18 @@ class VocTrainer(object):
             print("Wrong! Correct answer(s) would have been: %s" % (", ".join(translations)))
 
     def start_training(self):
+        self.running = True
+        signal.signal(signal.SIGINT, self.stop_training)
         if len(self.words) > 0:
-            word = random.choice(self.words)
-            self.ask_word(word[0], word[1:])
+            while self.running:
+                word = random.choice(self.words)
+                self.ask_word(word[0], word[1:])
+
+    def stop_training(self, *args):
+        self.running = False
+        print()
+        print("Your score: %i" % (self.score))
+        sys.exit(0)
 
 
 if __name__ == "__main__":
