@@ -20,8 +20,7 @@ class VocTrainer(object):
         if answer.lower() in translations:
             print("Correct!")
         else:
-            print("Wrong!")
-            print(translations)
+            print("Wrong! Correct answer(s) would have been: %s" % (", ".join(translations)))
 
     def start_training(self):
         if len(self.words) > 0:
