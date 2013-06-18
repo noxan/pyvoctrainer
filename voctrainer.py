@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
-import sys
 import codecs
+import sys
+import random
 
 
 class VocTrainer(object):
@@ -13,7 +14,10 @@ class VocTrainer(object):
             if len(parts) > 1:
                 self.words.append([trans.strip() for trans in parts])
 
-        print(self.words)
+    def start_training(self):
+        if len(self.words) > 0:
+            word = random.choice(self.words)
+            print(word)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -22,4 +26,5 @@ if __name__ == "__main__":
 
     voctrainer = VocTrainer()
     voctrainer.load_file(sys.argv[1])
+    voctrainer.start_training()
 
