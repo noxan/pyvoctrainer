@@ -6,14 +6,14 @@ import codecs
 
 class VocTrainer(object):
     def load_file(self, filename):
+        self.words = []
         f = codecs.open(filename, 'r', encoding='utf-8')
         for line in f:
             parts = line.split(',')
             if len(parts) > 1:
-                orig = parts[0].strip()
-                translations = [trans.strip() for trans in parts[1:]]
+                self.words.append([trans.strip() for trans in parts])
 
-                print(orig, translations)
+        print(self.words)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
