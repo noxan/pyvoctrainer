@@ -17,7 +17,12 @@ class VocTrainer(object):
     def start_training(self):
         if len(self.words) > 0:
             word = random.choice(self.words)
-            print(word)
+
+            original = word[0]
+            translations = word[1:]
+
+            print('What is the translation for "%s"?' % (original))
+            print(translations)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
